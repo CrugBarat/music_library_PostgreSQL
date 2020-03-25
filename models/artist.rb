@@ -16,14 +16,21 @@ class Artist
             RETURNING *"
     values = [@name]
     returned_array = SqlRunner.run(sql, values)
-    customer_hash = returned_array[0]
-    id_string = customer_hash['id']
+    artist_hash = returned_array[0]
+    id_string = artist_hash['id']
     @id = id_string.to_i
   end
 
   def self.delete_all()
     sql = "DELETE FROM artists"
     SqlRunner.run(sql)
+  end
+
+  def self.all()
+    sql = "SELECT * FROM artists"
+    artist_hashes = SqlRunner.run(sql)
+    artist_objs = artist_hashes.map {|artist| Artist.new(artist)}
+    return artist_objs
   end
 
 end
