@@ -56,10 +56,32 @@ class Album
     SqlRunner.run(sql, values)
   end
 
-  def self.find(id)
+  def self.find_by_id(id)
     sql = "SELECT * FROM albums
-           WHERE ID = $1"
+           WHERE id = $1"
     values = [id]
+    results = SqlRunner.run(sql, values)
+    return nil if results.first() == nil
+    album_hash = results.first()
+    album = Album.new(album_hash)
+    return album
+  end
+
+  def self.find_by_title(title)
+    sql = "SELECT * FROM albums
+           WHERE title = $1"
+    values = [title]
+    results = SqlRunner.run(sql, values)
+    return nil if results.first() == nil
+    album_hash = results.first()
+    album = Album.new(album_hash)
+    return album
+  end
+
+  def self.find_by_genre(genre)
+    sql = "SELECT * FROM albums
+           WHERE genre = $1"
+    values = [genre]
     results = SqlRunner.run(sql, values)
     return nil if results.first() == nil
     album_hash = results.first()

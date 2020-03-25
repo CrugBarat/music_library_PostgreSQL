@@ -17,7 +17,7 @@ artist3.save()
 
 
 album1 = Album.new({'title' => 'Nevermind',
-                    'genre' => 'Genre',
+                    'genre' => 'Grunge',
                     'artist_id' => artist1.id })
 
 album2 = Album.new({'title' => 'Untouchables',
