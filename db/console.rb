@@ -31,11 +31,12 @@ album3 = Album.new({'title' => 'Drowning in a Sea of Love',
 album4 = Album.new({'title' => 'Steam Days',
                     'genre' => 'Electronic',
                      'artist_id' => artist3.id })
-                     
+
 album1.save()
 album2.save()
 album3.save()
 album4.save()
+
 
 binding.pry
 nil

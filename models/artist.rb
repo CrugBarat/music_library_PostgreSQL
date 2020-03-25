@@ -12,8 +12,8 @@ class Artist
 
   def save()
     sql = "INSERT INTO artists (name)
-            VALUES ($1)
-            RETURNING *"
+           VALUES ($1)
+           RETURNING *"
     values = [@name]
     returned_array = SqlRunner.run(sql, values)
     artist_hash = returned_array[0]
@@ -34,11 +34,26 @@ class Artist
   end
 
   def album()
-    sql = "SELECT * FROM albums WHERE artist_id = $1"
+    sql = "SELECT * FROM albums
+           WHERE artist_id = $1"
     values = [@id]
     album_hashes = SqlRunner.run(sql, values)
     album_objs = album_hashes.map {|album| Album.new(album)}
     return album_objs
+  end
+
+  def update()
+    sql = "UPDATE artists SET (name) = ($1)
+           WHERE id = $2"
+    values = [@name, @id]
+    SqlRunner.run(sql, values)
+  end
+
+  def delete()
+    sql = "DELETE FROM artists
+           WHERE id = $1"
+    values = [@id]
+    SqlRunner.run(sql, values)
   end
 
 end
