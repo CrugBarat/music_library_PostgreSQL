@@ -59,8 +59,7 @@ class Artist
     values = [id]
     results = SqlRunner.run(sql, values)
     return nil if results.first() == nil
-    artist_hash = results.first()
-    artist = Artist.new(artist_hash)
+    artist = Artist.new(results.first())
     return artist
   end
 
@@ -70,8 +69,7 @@ class Artist
     values = [name]
     results = SqlRunner.run(sql, values)
     return nil if results.first() == nil
-    artist_hash = results.first()
-    artist = Artist.new(artist_hash)
+    artist = Artist.new(results.first())
     return artist
   end
 

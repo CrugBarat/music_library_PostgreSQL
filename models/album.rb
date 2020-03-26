@@ -62,8 +62,7 @@ class Album
     values = [id]
     results = SqlRunner.run(sql, values)
     return nil if results.first() == nil
-    album_hash = results.first()
-    album = Album.new(album_hash)
+    album = Album.new(results.first())
     return album
   end
 
@@ -73,8 +72,7 @@ class Album
     values = [title]
     results = SqlRunner.run(sql, values)
     return nil if results.first() == nil
-    album_hash = results.first()
-    album = Album.new(album_hash)
+    album = Album.new(results.first())
     return album
   end
 
@@ -84,8 +82,7 @@ class Album
     values = [genre]
     results = SqlRunner.run(sql, values)
     return nil if results.first() == nil
-    album_hash = results.first()
-    album = Album.new(album_hash)
+    album = Album.new(results.first())
     return album
   end
 
