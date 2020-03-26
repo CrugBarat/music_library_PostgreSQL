@@ -15,10 +15,7 @@ class Artist
            VALUES ($1)
            RETURNING *"
     values = [@name]
-    returned_array = SqlRunner.run(sql, values)
-    artist_hash = returned_array[0]
-    id_string = artist_hash['id']
-    @id = id_string.to_i
+    @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
 
   def self.delete_all()
